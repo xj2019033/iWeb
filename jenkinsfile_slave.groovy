@@ -1,16 +1,16 @@
 stage('pull source code') {
-    node('slave'){
-        git([url: 'git@github.com:princeqjzh/iWeb.git', branch: 'master'])
+    node('linux_node'){
+        git([url: 'https://github.com/xj2019033/iWeb.git', branch: 'master'])
     }
 }
 
 stage('maven compile & package') {
-    node('slave'){
+    node('linux_node'){
         sh ". /etc/profile"
         sh ". ~/.bash_profile"
 
         //定义maven java环境
-        def mvnHome = tool 'maven-3.3.3_slave'
+        def mvnHome = tool 'maven-3.6.3_slave'
         def jdkHome = tool 'jdk1.8_slave'
         env.PATH = "${mvnHome}/bin:${env.PATH}"
         env.PATH = "${jdkHome}/bin:${env.PATH}"
