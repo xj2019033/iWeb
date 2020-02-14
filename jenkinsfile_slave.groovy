@@ -20,7 +20,7 @@ stage('maven compile & package') {
 }
 
 stage('clean docker environment') {
-    node('slave'){
+    node('linux_node'){
         try{
             sh 'docker stop iWebObj'
         }catch(exc){
@@ -41,7 +41,7 @@ stage('clean docker environment') {
 }
 
 stage('make new docker image') {
-    node('slave'){
+    node('linux_node'){
         try{
             sh 'docker build -t iweb .'
         }catch(exc){
@@ -51,7 +51,7 @@ stage('make new docker image') {
 }
 
 stage('start docker container') {
-    node('slave'){
+    node('linux_node'){
         try{
             sh 'docker run --name iWebObj -d -p 8111:8080 iweb'
         }catch(exc){
