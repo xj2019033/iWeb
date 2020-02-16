@@ -7,7 +7,7 @@ stage('pull source code') {
 stage('maven compile & package') {
     node('linux_node'){
         sh ". /etc/profile"
-        sh ". ~/.bashrc"
+
 
         //定义maven java环境
         def mvnHome = tool 'maven-3.6.3_slave'
